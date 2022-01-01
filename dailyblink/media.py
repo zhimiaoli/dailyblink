@@ -5,9 +5,13 @@ from mutagen.mp4 import MP4
 
 def create_file(content, path, mode):
     pathlib.Path(path).parent.mkdir(parents=True, exist_ok=True)
+    if mode == 'wb':
+        with open(path, mode) as file:
+            file.write(content)
+    else:
+        with open(path, mode,encoding='utf-8') as file:
+            file.write(content)
 
-    with open(path, mode) as file:
-        file.write(content)
 
 
 def save_media(media, file_path):
